@@ -75,7 +75,10 @@ export default async function DealDetailPage(props: { params: Promise<{ id: stri
                 Go to Deal <ExternalLinkIcon className="w-5 h-5 ml-2" />
               </a>
               
-              <form action={upvoteWithId}>
+              <form action={async () => {
+                "use server";
+                await upvoteWithId();
+              }}>
                 <button type="submit" className="flex items-center bg-muted hover:bg-muted/80 hover:text-primary transition-colors py-3 px-6 rounded-lg font-bold text-lg">
                   <ArrowUpIcon className="w-5 h-5 mr-2" />
                   {deal.upvotes}
